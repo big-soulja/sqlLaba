@@ -112,10 +112,6 @@ def create_database(database_name):
     conn = create_connection()
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cur = conn.cursor()
-    # new_db_name = "new_database"
-    # cur.callproc('create_database_function', [new_db_name])
-    # cur.execute(sql.SQL('create_database_function({})'.format(
-    #     sql.Identifier(database_name))))
     cur.execute(sql.SQL("CREATE DATABASE {}").format(
         sql.Identifier(database_name)))
     cur.close()
@@ -141,9 +137,6 @@ def drop_database(database_name):
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cur = conn.cursor()
     cur.execute(sql.SQL((f"drop_database({database_name})")))
-
-    # cur.execute(sql.SQL("DROP DATABASE IF EXISTS {}").format(
-    #     sql.Identifier(database_name)))
     cur.close()
     conn.close()
 
@@ -516,61 +509,3 @@ create_functions('laba2', 'bruh')
 
 # Run the GUI
 create_login_gui()
-# admin_gui()
-
-
-# Пример использования функций
-# Создание базы данных
-# create_database("laba2")
-
-# Очистка таблицы
-# truncate_table("laba2", "links")
-
-# create_table("bruh", "person", {
-#     'id': 'SERIAL PRIMARY KEY',
-#     'name': 'VARCHAR(255)',
-#     'age': 'INTEGER'
-# })
-
-# Добавление новых данных
-# data = (1, "John Doe", 25)
-# insert_data("laba2", "person", data)
-
-# Поиск по текстовому полю
-# results = search_data("laba2", "person", "name", "John")
-# print(results)
-
-# Обновление кортежа
-# update_data("laba2", "person", "name", "John Doe", "Jane Smith")
-
-# Удаление по текстовому полю
-# delete_data("laba2", "person", "name", "Jane Smith")
-
-# # Удаление базы данных
-# drop_database("laba2")
-
-
-# Connect to the PostgreSQL server
-# conn = psycopg2.connect(
-#     host="your_host",
-#     port="your_port",
-#     user="your_user",
-#     password="your_password",
-#     database="your_existing_database"
-# )
-
-# # Create a cursor object
-# cur = conn.cursor()
-
-# # Define the name of the new database to be created
-# new_db_name = "new_database"
-
-# # Call the stored function with the database name
-# cur.callproc('create_database_function', [new_db_name])
-
-# # Commit the transaction
-# conn.commit()
-
-# # Close the cursor and connection
-# cur.close()
-# conn.close()
